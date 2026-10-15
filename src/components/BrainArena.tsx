@@ -178,14 +178,14 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
       pointsEarned = prevAttempts === 0 ? 10 : 5;
       locked = true;
       feedback = prevAttempts === 0
-        ? '🎉 Excellent! That is correct! (+10 pts) (Chính xác! Xuất sắc!)'
-        : '✨ Correct on second attempt! (+5 pts) (Chính xác ở lần thử 2!)';
+        ? '🎉 Excellent! That is correct! (+10 pts)'
+        : '✨ Correct on second attempt! (+5 pts)';
 
       StudentStorage.addScore(pointsEarned, {
         title: `Brain Arena - Question ${currentIdx + 1}`,
         activityType: 'arena',
         durationSeconds: elapsedSeconds,
-        details: `Trả lời đúng (${pointsEarned} điểm)`,
+        details: `Correct answer (+${pointsEarned} pts)`,
       });
     } else {
       setShakeTrigger(true);
@@ -196,13 +196,13 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
         soundEffects.playIncorrect();
         pointsEarned = 0;
         locked = false;
-        feedback = '❌ Not quite! You have 1 more retry (5 pts). (Chưa chính xác! Bạn còn 1 cơ hội thử lại.)';
+        feedback = '❌ Not quite! You have 1 more retry (5 pts).';
       } else {
         // Second attempt failed: reveal answer & lock
         soundEffects.playReveal();
         pointsEarned = 0;
         locked = true;
-        feedback = '⚠️ Second attempt incorrect (0 pts). Here is the correct answer: (Đã hết 2 lượt thử. Hãy xem đáp án chính xác bên dưới:)';
+        feedback = '⚠️ Second attempt incorrect (0 pts). Here is the correct answer:';
       }
     }
 
@@ -405,10 +405,10 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
               <div className="flex items-center gap-2">
                 <span className="text-xs sm:text-sm font-black uppercase tracking-wider text-amber-950 bg-amber-400 border-2 border-amber-500 px-3.5 py-1 rounded-full shadow-xs flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-amber-900" />
-                  <span>⚔️ BRAIN ARENA • ĐẤU TRƯỜNG LỊCH SỬ</span>
+                  <span>⚔️ BRAIN ARENA • HISTORY CHALLENGE</span>
                 </span>
                 <span className="text-xs font-bold text-slate-500 bg-slate-100 px-2.5 py-1 rounded-full border border-slate-200">
-                  15 Câu Hỏi
+                  15 Questions
                 </span>
               </div>
               <div className="text-xs sm:text-sm font-black text-rose-900 mt-2 flex items-center gap-1.5">
@@ -433,12 +433,12 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
           {/* Progress Bar */}
           <div className="mt-4 flex items-center justify-between text-xs sm:text-sm font-black text-slate-700 mb-1.5">
             <span className="flex items-center gap-1.5">
-              <span>⭐ Câu hỏi</span>
+              <span>⭐ Question</span>
               <span className="text-rose-600 text-base">{currentIdx + 1}</span>
               <span>/ {sessionQuestions.length}</span>
             </span>
             <span className="text-amber-800 bg-amber-100 px-2.5 py-0.5 rounded-full border border-amber-300 font-extrabold">
-              {Math.round(((currentIdx + 1) / sessionQuestions.length) * 100)}% hoàn thành
+              {Math.round(((currentIdx + 1) / sessionQuestions.length) * 100)}% completed
             </span>
           </div>
           <div className="w-full bg-amber-100 h-4 rounded-full overflow-hidden border-2 border-amber-300 shadow-inner p-0.5">
@@ -513,7 +513,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
                     disabled={!selectedSingleChoice}
                     className="w-full mt-4 py-3.5 sm:py-4 rounded-2xl btn-3d-yellow disabled:opacity-40 font-black text-base sm:text-lg shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
                   >
-                    <span>{currentSlot.attempts === 1 ? '🔄 Thử Lại Lần 2 (+5 điểm)' : '🚀 Xác Nhận Đáp Án (+10 điểm)'}</span>
+                    <span>{currentSlot.attempts === 1 ? '🔄 Try Again (Attempt 2 of 2) (+5 pts)' : '🚀 Submit Answer (+10 pts)'}</span>
                   </button>
                 )}
               </div>
@@ -547,7 +547,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
                       className={`py-8 sm:py-10 rounded-3xl text-center text-xl sm:text-2xl font-black transition-all shadow-lg cursor-pointer ${btnClass}`}
                     >
                       <div className="text-3xl sm:text-4xl mb-1">{boolVal ? '👍' : '👎'}</div>
-                      <div>{boolVal ? 'TRUE (ĐÚNG)' : 'FALSE (SAI)'}</div>
+                      <div>{boolVal ? 'TRUE' : 'FALSE'}</div>
                     </button>
                   );
                 })}
@@ -559,7 +559,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
               <form onSubmit={submitFillInBlank} className="space-y-4">
                 <div className="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 text-sm sm:text-base text-slate-800 shadow-xs">
                   <span className="font-black text-amber-900 flex items-center gap-1.5 mb-1">
-                    <span>💡</span> Gợi ý câu (Sentence Prompt):
+                    <span>💡</span> Sentence Prompt:
                   </span>
                   <div className="font-semibold text-slate-800">{q.sentencePrompt}</div>
                 </div>
@@ -569,7 +569,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
                     value={fillValue}
                     disabled={currentSlot.isLocked}
                     onChange={(e) => setFillValue(e.target.value)}
-                    placeholder={q.placeholder || 'Bé hãy nhập đáp án vào đây...'}
+                    placeholder={q.placeholder || 'Type your answer here...'}
                     className="flex-1 px-4 py-3.5 rounded-2xl border-3 border-amber-300 focus:border-rose-500 bg-white outline-none text-slate-900 text-base sm:text-lg font-bold disabled:bg-slate-100 shadow-inner"
                   />
                   {!currentSlot.isLocked && (
@@ -578,7 +578,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
                       disabled={!fillValue.trim()}
                       className="px-6 py-3.5 rounded-2xl btn-3d-yellow disabled:opacity-40 font-black text-base shadow-md transition cursor-pointer"
                     >
-                      {currentSlot.attempts === 1 ? '🔄 Thử lại (+5 pts)' : '🚀 Gửi đáp án (+10 pts)'}
+                      {currentSlot.attempts === 1 ? '🔄 Try Again (+5 pts)' : '🚀 Submit Answer (+10 pts)'}
                     </button>
                   )}
                 </div>
@@ -591,7 +591,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
                 <div className="text-xs sm:text-sm text-amber-900 font-bold bg-amber-100 px-4 py-2 rounded-2xl border-2 border-amber-300 flex items-center gap-2 shadow-xs">
                   <ShieldCheck className="w-5 h-5 text-amber-700 shrink-0" />
                   <span>
-                    👉 Bé hãy chọn <strong>TẤT CẢ các phương án đúng</strong> (có thể chọn nhiều hơn 1 đáp án nhé)!
+                    👉 Select <strong>ALL correct answers</strong> (you can pick more than one)!
                   </span>
                 </div>
 
@@ -640,7 +640,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
                     disabled={selectedMultiple.length === 0}
                     className="w-full mt-4 py-3.5 sm:py-4 rounded-2xl btn-3d-yellow disabled:opacity-40 font-black text-base sm:text-lg shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
                   >
-                    <span>{currentSlot.attempts === 1 ? '🔄 Thử Lại (+5 pts)' : '🚀 Xác Nhận Các Lựa Chọn (+10 pts)'}</span>
+                    <span>{currentSlot.attempts === 1 ? '🔄 Try Again (+5 pts)' : '🚀 Submit Selections (+10 pts)'}</span>
                   </button>
                 )}
               </div>
@@ -651,14 +651,14 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
               <div className="space-y-4">
                 <div className="p-3 bg-sky-50 rounded-2xl border border-sky-200 text-xs sm:text-sm font-bold text-sky-950 flex items-center gap-2">
                   <span className="text-lg">👉</span>
-                  <span>Bé hãy bấm vào Cột A rồi bấm tiếp vào giải thích tương ứng ở Cột B nhé!</span>
+                  <span>Click an item in Column A, then click its matching definition in Column B!</span>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Column A */}
                   <div className="space-y-2.5">
                     <div className="text-xs sm:text-sm font-black text-purple-900 uppercase tracking-wide flex items-center gap-1.5">
-                      <span>🏷️</span> Cột A: Từ khóa (Words)
+                      <span>🏷️</span> Column A: Words
                     </div>
                     {q.columnA.map((item) => {
                       const isConnected = Boolean(matchingConnections[item.id]);
@@ -682,7 +682,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
                           {item.text}
                           {isConnected && (
                             <span className="block text-xs font-bold text-emerald-700 truncate mt-1">
-                              ✅ Nối với: {matchingConnections[item.id]}
+                              ✅ Matched: {matchingConnections[item.id]}
                             </span>
                           )}
                         </button>
@@ -693,7 +693,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
                   {/* Column B */}
                   <div className="space-y-2.5">
                     <div className="text-xs sm:text-sm font-black text-amber-900 uppercase tracking-wide flex items-center gap-1.5">
-                      <span>📝</span> Cột B: Giải thích (Definitions)
+                      <span>📝</span> Column B: Definitions
                     </div>
                     {q.columnB.map((item) => {
                       return (
@@ -718,7 +718,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
                     }
                     className="w-full py-3.5 sm:py-4 rounded-2xl btn-3d-yellow disabled:opacity-40 font-black text-base sm:text-lg shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
                   >
-                    <span>{currentSlot.attempts === 1 ? '🔄 Kiểm Tra Lại Cặp Nối (+5 pts)' : '✨ Kiểm Tra 4 Cặp Nối (+10 pts)'}</span>
+                    <span>{currentSlot.attempts === 1 ? '🔄 Check Pairs Again (+5 pts)' : '✨ Check Matching Pairs (+10 pts)'}</span>
                   </button>
                 )}
               </div>
@@ -728,14 +728,14 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
             {q.type === 'word-order' && (
               <div className="space-y-4">
                 <p className="text-xs sm:text-sm font-bold text-slate-700 flex items-center gap-1.5">
-                  <span>🧩</span> Bấm vào các từ bên dưới để xếp thành câu tiếng Anh hoàn chỉnh nhé:
+                  <span>🧩</span> Click the words below in the correct order to make a complete English sentence:
                 </p>
 
                 {/* Drop Zone */}
                 <div className="min-h-24 p-4 rounded-3xl border-3 border-dashed border-amber-400 bg-amber-50/70 flex flex-wrap gap-2.5 items-center shadow-inner">
                   {orderedChips.length === 0 ? (
                     <span className="text-sm font-bold text-amber-800/60 italic flex items-center gap-2 mx-auto">
-                      <span>👇</span> Bấm chọn từ bên dưới để xếp câu vào đây...
+                      <span>👇</span> Click words below to place them here...
                     </span>
                   ) : (
                     orderedChips.map((word, idx) => (
@@ -771,7 +771,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
                     disabled={remainingChips.length > 0}
                     className="w-full py-3.5 sm:py-4 rounded-2xl btn-3d-yellow disabled:opacity-40 font-black text-base sm:text-lg shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
                   >
-                    <span>{currentSlot.attempts === 1 ? '🔄 Kiểm Tra Lại Câu (+5 pts)' : '🚀 Kiểm Tra Câu Đã Ghép (+10 pts)'}</span>
+                    <span>{currentSlot.attempts === 1 ? '🔄 Check Sentence Again (+5 pts)' : '🚀 Check Ordered Sentence (+10 pts)'}</span>
                   </button>
                 )}
               </div>
@@ -805,19 +805,19 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
                     <div className="text-sm sm:text-base text-slate-800 mt-2 p-3.5 bg-white/90 rounded-2xl border-2 border-amber-200 shadow-xs">
                       <div className="font-black text-amber-900 mb-1 flex items-center gap-1.5">
                         <Sparkles className="w-4 h-4 text-amber-600" />
-                        <span>Giải Thích Chi Tiết & Đáp Án Chuẩn:</span>
+                        <span>Explanation & Correct Answer:</span>
                       </div>
                       <div className="leading-relaxed font-semibold">{q.explanation}</div>
                     </div>
                   )}
                   {currentSlot.isLocked && (
                     <div className="text-xs sm:text-sm font-black text-emerald-800 mt-1">
-                      ⭐ Điểm đạt được ở câu này: +{currentSlot.scoreAwarded} / 10 pts
+                      ⭐ Points earned on this question: +{currentSlot.scoreAwarded} / 10 pts
                     </div>
                   )}
                   {!currentSlot.isLocked && currentSlot.attempts === 1 && (
                     <div className="text-xs sm:text-sm text-rose-800 font-black mt-1">
-                      ⚠️ Bé còn 1 lần thử lại (đạt 5 điểm nếu đúng). Hãy đọc kỹ lại câu hỏi nhé!
+                      ⚠️ You have 1 retry remaining (earn 5 pts if correct). Read carefully and try again!
                     </div>
                   )}
                 </div>
@@ -833,7 +833,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
               className="flex items-center gap-2 px-6 py-3.5 rounded-2xl btn-3d-green disabled:opacity-35 font-black text-sm sm:text-base shadow-lg transition cursor-pointer"
             >
               <span>
-                {currentIdx < sessionQuestions.length - 1 ? 'Câu Tiếp Theo 🚀' : 'Hoàn Thành Đấu Trường 🏆'}
+                {currentIdx < sessionQuestions.length - 1 ? 'Next Question 🚀' : 'Finish Challenge 🏆'}
               </span>
               <ArrowRight className="w-5 h-5" />
             </button>
@@ -848,13 +848,13 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
 
           <div>
             <span className="text-xs sm:text-sm font-black uppercase tracking-wider text-rose-800 bg-rose-100 border-2 border-rose-300 px-4 py-1.5 rounded-full shadow-xs inline-flex items-center gap-1.5">
-              <span>🎉 HOÀN THÀNH BRAIN ARENA CHALLENGE 🎉</span>
+              <span>🎉 CHALLENGE COMPLETED! 🎉</span>
             </span>
             <h3 className="text-2xl sm:text-4xl font-black text-rose-950 mt-3">
               {encouragingMsg}
             </h3>
             <p className="text-sm sm:text-base text-amber-900 font-bold mt-1">
-              Bé đã chinh phục toàn bộ 15 câu hỏi đấu trường về Di tích Đền Hai Bà Trưng!
+              You completed all 15 history arena questions about Hai Ba Trung Shrine!
             </p>
           </div>
 
@@ -865,7 +865,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
                 {totalScore}
               </div>
               <div className="text-xs text-amber-800 font-extrabold mt-1">
-                Tổng Điểm (/150) ⭐
+                Total Score (/150) ⭐
               </div>
             </div>
 
@@ -874,7 +874,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
                 {correctCount}
               </div>
               <div className="text-xs text-emerald-800 font-extrabold mt-1">
-                Số Câu Đúng ✅
+                Correct Answers ✅
               </div>
             </div>
 
@@ -883,7 +883,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
                 {incorrectCount}
               </div>
               <div className="text-xs text-rose-800 font-extrabold mt-1">
-                Số Câu Sai ❌
+                Incorrect Answers ❌
               </div>
             </div>
 
@@ -892,14 +892,14 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
                 {accuracyPercentage}%
               </div>
               <div className="text-xs text-sky-800 font-extrabold mt-1">
-                Độ Chính Xác 🎯
+                Accuracy 🎯
               </div>
             </div>
           </div>
 
           <div className="p-3 bg-amber-50 rounded-2xl border-2 border-amber-200 text-xs sm:text-sm text-amber-950 font-bold inline-flex items-center justify-center gap-2 shadow-xs">
             <Timer className="w-4 h-4 text-amber-700" />
-            <span>Thời Gian Thi Đấu: {formatTime(elapsedSeconds)}</span>
+            <span>Completion Time: {formatTime(elapsedSeconds)}</span>
           </div>
 
           {/* Action Buttons */}
@@ -912,7 +912,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
               className="flex items-center gap-2 px-5 py-3 rounded-2xl btn-3d-green font-black text-xs sm:text-sm shadow-md transition cursor-pointer"
             >
               <RotateCcw className="w-4 h-4" />
-              <span>Thi Đấu Lại 🔄</span>
+              <span>Play Again 🔄</span>
             </button>
 
             <button
@@ -922,7 +922,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
               }}
               className="flex items-center gap-2 px-5 py-3 rounded-2xl border-2 border-slate-300 bg-white text-slate-700 hover:bg-slate-100 font-black text-xs sm:text-sm transition cursor-pointer shadow-xs"
             >
-              <span>Xem Lại Đáp Án Chi Tiết</span>
+              <span>Review Detailed Answers</span>
               {showReview ? <ChevronUp className="w-4 h-4" /> : <ChevronDown className="w-4 h-4" />}
             </button>
 
@@ -934,7 +934,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
               className="flex items-center gap-2 px-5 py-3 rounded-2xl border-2 border-slate-300 bg-white text-slate-700 hover:bg-slate-100 font-black text-xs sm:text-sm transition cursor-pointer shadow-xs"
             >
               <BookOpen className="w-4 h-4" />
-              <span>Về Trang Bài Học 📖</span>
+              <span>Back to Reading 📖</span>
             </button>
 
             <button
@@ -945,7 +945,7 @@ export const BrainArena: React.FC<BrainArenaProps> = ({
               className="flex items-center gap-2 px-6 py-3.5 rounded-2xl btn-3d-yellow font-black text-xs sm:text-base shadow-lg transition cursor-pointer"
             >
               <Trophy className="w-5 h-5 text-amber-950" />
-              <span>Xem Bảng Xếp Hạng Toàn Quốc 🏆</span>
+              <span>View National Leaderboard 🏆</span>
             </button>
           </div>
 

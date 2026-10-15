@@ -108,7 +108,7 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
       title: 'Historical Reading Exploration',
       activityType: 'reading',
       durationSeconds: 180,
-      details: 'Đã hoàn thành tìm hiểu bài đọc lịch sử Đền Hai Bà Trưng (+10 điểm)',
+      details: 'Completed Hai Ba Trung Shrine history reading exploration (+10 pts)',
     });
   };
 
@@ -296,7 +296,7 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
                   </span>
                 </div>
                 <div className="text-xs text-slate-600">
-                  Luyện nghe phát âm tiếng Anh chuẩn sư phạm cho học sinh lớp 6
+                  Practice natural English listening and pronunciation for Grade 6 students
                 </div>
               </div>
             </div>
@@ -307,14 +307,14 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
                 <button
                   onClick={handleClaimReadingBonus}
                   className="flex items-center gap-1.5 px-4 py-2.5 rounded-2xl btn-3d-yellow font-black text-xs sm:text-sm shadow-md transition cursor-pointer"
-                  title="Nhận điểm khi đọc bài"
+                  title="Claim reading points"
                 >
                   <Sparkles className="w-4 h-4 text-amber-950" />
-                  <span>Nhận +10 Điểm Đọc ⭐</span>
+                  <span>Claim +10 Reading Points ⭐</span>
                 </button>
               ) : (
                 <span className="text-xs font-black text-emerald-900 bg-emerald-100 border-2 border-emerald-300 px-3.5 py-2 rounded-2xl flex items-center gap-1 shadow-xs">
-                  ✓ Đã nhận +10 điểm đọc bài! 🎉
+                  ✓ +10 Reading Points Claimed! 🎉
                 </span>
               )}
 
@@ -325,10 +325,10 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
                   setShowVoiceSettings((prev) => !prev);
                 }}
                 className="flex items-center gap-1.5 px-4 py-2.5 rounded-2xl btn-3d-blue font-black text-xs sm:text-sm shadow-md transition cursor-pointer"
-                title="Thay đổi giọng đọc tiếng Anh"
+                title="Change English Voice"
               >
                 <Sliders className="w-4 h-4 text-white" />
-                <span>Đổi giọng đọc 🗣️</span>
+                <span>Voice Options 🗣️</span>
               </button>
 
               {!isPlaying || isPaused ? (
@@ -337,7 +337,7 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
                   className="flex items-center gap-1.5 px-5 py-2.5 rounded-2xl btn-3d-green text-white text-xs sm:text-sm font-black shadow-lg transition cursor-pointer"
                 >
                   <Play className="w-4 h-4 fill-current" />
-                  <span>{isPaused ? 'Tiếp tục nghe 🎧' : 'Đọc Toàn Bài (Storytelling) 🎙️'}</span>
+                  <span>{isPaused ? 'Resume Audio 🎧' : 'Listen to Full Story 🎙️'}</span>
                 </button>
               ) : (
                 <button
@@ -345,7 +345,7 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
                   className="flex items-center gap-1.5 px-5 py-2.5 rounded-2xl btn-3d-orange text-white text-xs sm:text-sm font-black shadow-lg transition cursor-pointer"
                 >
                   <Pause className="w-4 h-4 fill-current" />
-                  <span>Tạm dừng ⏸️</span>
+                  <span>Pause ⏸️</span>
                 </button>
               )}
 
@@ -355,7 +355,7 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
                   className="flex items-center gap-1.5 px-4 py-2.5 rounded-2xl btn-3d-red text-white text-xs font-black shadow-md transition cursor-pointer"
                 >
                   <Square className="w-3.5 h-3.5 fill-current" />
-                  <span>Dừng ⏹️</span>
+                  <span>Stop ⏹️</span>
                 </button>
               )}
 
@@ -404,7 +404,7 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div className="flex-1">
                   <label className="block text-xs font-bold text-slate-800 mb-1">
-                    Chọn giọng đọc tiếng Anh (Select English Voice):
+                    Select English Voice:
                   </label>
                   <select
                     value={selectedVoiceURI}
@@ -418,7 +418,7 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
                         </option>
                       ))
                     ) : (
-                      <option value="">Default English Voice (Trình duyệt mặc định)</option>
+                      <option value="">Default English Voice</option>
                     )}
                   </select>
                 </div>
@@ -429,13 +429,13 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
                     className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-red-100 hover:bg-red-200 text-red-900 border border-red-300 text-xs font-bold transition cursor-pointer"
                   >
                     <Volume2 className="w-3.5 h-3.5" />
-                    <span>Thử giọng mẫu (Test Voice)</span>
+                    <span>Test Voice 🔊</span>
                   </button>
                   <button
                     onClick={() => setShowVoiceSettings(false)}
                     className="px-3 py-2 rounded-lg bg-slate-200 hover:bg-slate-300 text-slate-700 text-xs font-semibold transition"
                   >
-                    Đóng
+                    Close
                   </button>
                 </div>
               </div>
@@ -466,7 +466,7 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-red-600"></span>
                 <h3 className="font-extrabold text-sm sm:text-base text-slate-900 uppercase tracking-wide">
-                  Hình ảnh Di tích (Shrine Gallery)
+                  Shrine Photo Gallery 📷
                 </h3>
               </div>
               <span className="text-xs text-slate-500 font-bold">
@@ -487,10 +487,10 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
               <button
                 onClick={() => openZoomModal()}
                 className="absolute bottom-3 right-3 flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-950/80 hover:bg-red-800 text-white text-xs font-bold backdrop-blur-md border border-white/20 shadow-lg transition transform active:scale-95 cursor-pointer"
-                title="Nhấn để phóng to ảnh quan sát chi tiết"
+                title="Click to zoom in and explore details"
               >
                 <ZoomIn className="w-4 h-4 text-amber-300" />
-                <span>Phóng to (Zoom)</span>
+                <span>Zoom In 🔍</span>
               </button>
 
               {/* Prev / Next overlay arrows */}
@@ -500,7 +500,7 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
                   handlePrevPhoto();
                 }}
                 className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-950/60 hover:bg-slate-950/90 text-white transition backdrop-blur-sm cursor-pointer"
-                title="Ảnh trước"
+                title="Previous photo"
               >
                 <ChevronLeft className="w-4 h-4" />
               </button>
@@ -510,7 +510,7 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
                   handleNextPhoto();
                 }}
                 className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-slate-950/60 hover:bg-slate-950/90 text-white transition backdrop-blur-sm cursor-pointer"
-                title="Ảnh sau"
+                title="Next photo"
               >
                 <ChevronRight className="w-4 h-4" />
               </button>
@@ -690,14 +690,14 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
               }}
               className="mt-5 inline-flex items-center gap-2 px-8 py-3.5 btn-3d-yellow text-amber-950 font-black text-sm sm:text-base rounded-2xl shadow-xl transition cursor-pointer"
             >
-              <span>Vào Làm Bài Đố Vui (Interactive Quiz) 🎯</span>
+              <span>Start Interactive Quiz 🎯</span>
               <ArrowRight className="w-5 h-5 text-amber-950" />
             </button>
           </div>
         </div>
       </div>
 
-      {/* FULLSCREEN IMAGE ZOOM MODAL (Feature 1: Chế độ Zoom quan sát) */}
+      {/* FULLSCREEN IMAGE ZOOM MODAL */}
       {isZoomModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-slate-950/95 backdrop-blur-md animate-in fade-in duration-200">
           <div className="relative w-full max-w-6xl max-h-[96vh] flex flex-col bg-slate-900 border-2 border-amber-500/70 rounded-2xl shadow-2xl overflow-hidden text-white">
@@ -717,8 +717,8 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
                 <button
                   onClick={() => setZoomLevel((z) => Math.max(1, z - 0.25))}
                   disabled={zoomLevel <= 1}
-                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-30 text-white"
-                  title="Thu nhỏ (-)"
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-30 text-white cursor-pointer"
+                  title="Zoom out (-)"
                 >
                   <ZoomOut className="w-4 h-4" />
                 </button>
@@ -728,22 +728,22 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
                 <button
                   onClick={() => setZoomLevel((z) => Math.min(3, z + 0.25))}
                   disabled={zoomLevel >= 3}
-                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-30 text-white"
-                  title="Phóng to (+)"
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-30 text-white cursor-pointer"
+                  title="Zoom in (+)"
                 >
                   <ZoomIn className="w-4 h-4" />
                 </button>
                 <button
                   onClick={() => setZoomLevel(1)}
-                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white"
-                  title="Đặt lại kích thước (100%)"
+                  className="p-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-white cursor-pointer"
+                  title="Reset zoom (100%)"
                 >
                   <RotateCcw className="w-4 h-4" />
                 </button>
                 <button
                   onClick={closeZoomModal}
-                  className="p-1.5 rounded-lg bg-red-900 hover:bg-red-800 text-white ml-2"
-                  title="Đóng (Close)"
+                  className="p-1.5 rounded-lg bg-red-900 hover:bg-red-800 text-white ml-2 cursor-pointer"
+                  title="Close"
                 >
                   <X className="w-5 h-5" />
                 </button>
@@ -763,14 +763,14 @@ export const HistoricalReading: React.FC<HistoricalReadingProps> = ({ onStartQui
               <button
                 onClick={handlePrevPhoto}
                 className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-slate-900/80 hover:bg-red-900 text-white border border-slate-700 shadow-xl transition cursor-pointer"
-                title="Ảnh trước"
+                title="Previous"
               >
                 <ChevronLeft className="w-6 h-6" />
               </button>
               <button
                 onClick={handleNextPhoto}
                 className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-slate-900/80 hover:bg-red-900 text-white border border-slate-700 shadow-xl transition cursor-pointer"
-                title="Ảnh sau"
+                title="Next"
               >
                 <ChevronRight className="w-6 h-6" />
               </button>

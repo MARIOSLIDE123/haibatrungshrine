@@ -107,7 +107,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
       StudentStorage.addScore(points, {
         title: `Interactive Quiz - Question ${currentIndex + 1}`,
         activityType: 'quiz',
-        details: `Trả lời đúng (${points} điểm)`,
+        details: `Correct answer (+${points} pts)`,
       });
 
       setQuestionStates((prev) => ({
@@ -119,8 +119,8 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
           firstAttemptCorrect: prevAttempts === 0,
           userAnswer: answerData,
           feedbackMessage: prevAttempts === 0
-            ? '🎉 Excellent! That is correct! (+10 pts) (Chính xác! Xuất sắc!)'
-            : '✨ Correct on second attempt! (+5 pts) (Chính xác ở lần thử thứ 2!)',
+            ? '🎉 Excellent! That is correct! (+10 pts)'
+            : '✨ Correct on second attempt! (+5 pts)',
         },
       }));
     } else {
@@ -136,7 +136,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
             isCorrect: false,
             firstAttemptCorrect: false,
             userAnswer: answerData,
-            feedbackMessage: '❌ Not quite! You have 1 more chance to try again. (Chưa chính xác! Bạn còn 1 cơ hội thử lại.)',
+            feedbackMessage: '❌ Not quite! You have 1 more chance to try again.',
           },
         }));
       } else {
@@ -150,7 +150,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
             isCorrect: false,
             firstAttemptCorrect: false,
             userAnswer: answerData,
-            feedbackMessage: '⚠️ Second attempt incorrect (0 pts). Here is the correct answer: (Đã hết 2 lượt thử. Hãy xem đáp án chính xác bên dưới:)',
+            feedbackMessage: '⚠️ Second attempt incorrect (0 pts). Here is the correct answer:',
           },
         }));
       }
@@ -264,14 +264,14 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
               <div className="flex items-center gap-2">
                 <span className="text-xs sm:text-sm font-black uppercase tracking-wider text-rose-800 bg-rose-100 border-2 border-rose-300 px-3.5 py-1 rounded-full shadow-xs flex items-center gap-1.5">
                   <Sparkles className="w-3.5 h-3.5 text-rose-600" />
-                  <span>🎯 Đố Vui Di Tích • Lớp 6</span>
+                  <span>🎯 Heritage Quiz • Grade 6</span>
                 </span>
                 <span className="text-xs text-amber-700 font-bold bg-amber-100 px-2.5 py-1 rounded-full border border-amber-300">
-                  📱 Chuẩn 16:9
+                  📱 16:9 Standard
                 </span>
               </div>
               <div className="text-xs sm:text-sm text-slate-700 mt-2 font-bold flex items-center gap-1.5">
-                <span>📚 Chủ đề:</span>
+                <span>📚 Topic:</span>
                 <span className="text-sky-800 bg-sky-50 px-2 py-0.5 rounded-lg border border-sky-200">
                   {currentQ.topic}
                 </span>
@@ -280,7 +280,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
 
             <div className="text-right sm:self-end">
               <span className="text-sm sm:text-base font-black text-rose-950 flex items-center justify-end gap-1.5">
-                <span>⭐ Câu</span>
+                <span>⭐ Question</span>
                 <span className="text-rose-600 text-lg">{currentIndex + 1}</span>
                 <span>/ {totalQuestions}</span>
               </span>
@@ -361,7 +361,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                     disabled={!selectedOption}
                     className="w-full mt-4 py-3.5 sm:py-4 rounded-2xl btn-3d-yellow disabled:opacity-40 font-black text-base sm:text-lg shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
                   >
-                    <span>{currentState.attempts === 1 ? '🔄 Thử Lại Lần 2 (Submit Retry)' : '🚀 Xác Nhận Câu Trả Lời (Submit Answer)'}</span>
+                    <span>{currentState.attempts === 1 ? '🔄 Try Again (Attempt 2 of 2)' : '🚀 Submit Answer'}</span>
                   </button>
                 )}
               </div>
@@ -398,7 +398,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                         className={`py-8 sm:py-10 rounded-3xl text-center text-xl sm:text-2xl font-black transition-all shadow-lg cursor-pointer ${btnClass}`}
                       >
                         <div className="text-3xl sm:text-4xl mb-1">{boolVal ? '👍' : '👎'}</div>
-                        <div>{boolVal ? 'TRUE (ĐÚNG)' : 'FALSE (SAI)'}</div>
+                        <div>{boolVal ? 'TRUE' : 'FALSE'}</div>
                       </button>
                     );
                   })}
@@ -411,7 +411,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
               <form onSubmit={handleSubmitFill} className="space-y-4">
                 <div className="p-4 bg-amber-50 rounded-2xl border-2 border-amber-300 text-sm sm:text-base text-slate-800 shadow-xs">
                   <span className="font-black text-amber-900 flex items-center gap-1.5 mb-1">
-                    <span>💡</span> Gợi ý (Hint):
+                    <span>💡</span> Hint:
                   </span>
                   <div className="font-semibold text-slate-800">{currentQ.sentencePrompt}</div>
                 </div>
@@ -421,7 +421,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                     value={fillInput}
                     disabled={currentState.isCompleted}
                     onChange={(e) => setFillInput(e.target.value)}
-                    placeholder={currentQ.placeholder || 'Bé hãy nhập từ còn thiếu vào đây...'}
+                    placeholder={currentQ.placeholder || 'Type the missing word here...'}
                     className="flex-1 px-4 py-3.5 rounded-2xl border-3 border-amber-300 focus:border-rose-500 bg-white outline-none text-slate-900 text-base sm:text-lg font-bold disabled:bg-slate-100 shadow-inner"
                   />
                   {!currentState.isCompleted && (
@@ -430,7 +430,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                       disabled={!fillInput.trim()}
                       className="px-6 py-3.5 rounded-2xl btn-3d-yellow disabled:opacity-40 font-black text-base shadow-md transition cursor-pointer"
                     >
-                      {currentState.attempts === 1 ? '🔄 Thử Lại (Retry)' : '🚀 Gửi Đáp Án (Submit)'}
+                      {currentState.attempts === 1 ? '🔄 Try Again' : '🚀 Submit Answer'}
                     </button>
                   )}
                 </div>
@@ -442,14 +442,14 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
               <div className="space-y-4">
                 <div className="p-3 bg-sky-50 rounded-2xl border border-sky-200 text-xs sm:text-sm font-bold text-sky-950 flex items-center gap-2">
                   <span className="text-lg">👉</span>
-                  <span>Bước 1: Chọn đặc điểm ở Cột A. Bước 2: Nhấn vào mô tả tương ứng ở Cột B nhé!</span>
+                  <span>Step 1: Click an item in Column A. Step 2: Click its matching description in Column B!</span>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Column A (Terms) */}
                   <div className="space-y-2.5">
                     <div className="text-xs sm:text-sm font-black text-purple-900 uppercase tracking-wide flex items-center gap-1.5">
-                      <span>🏷️</span> Cột A: Đặc điểm (Features)
+                      <span>🏷️</span> Column A: Features
                     </div>
                     {currentQ.pairs.map((p) => {
                       const isMatched = Boolean(matchedPairs[p.term]);
@@ -470,7 +470,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                           {p.term}
                           {isMatched && (
                             <span className="block text-xs font-bold text-emerald-700 truncate mt-1">
-                              ✅ Nối với: {matchedPairs[p.term]}
+                              ✅ Matched: {matchedPairs[p.term]}
                             </span>
                           )}
                         </button>
@@ -481,7 +481,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                   {/* Column B (Definitions) */}
                   <div className="space-y-2.5">
                     <div className="text-xs sm:text-sm font-black text-amber-900 uppercase tracking-wide flex items-center gap-1.5">
-                      <span>📝</span> Cột B: Mô tả (Descriptions)
+                      <span>📝</span> Column B: Descriptions
                     </div>
                     {currentQ.pairs.map((p) => {
                       return (
@@ -504,7 +504,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                     disabled={Object.keys(matchedPairs).length !== currentQ.pairs.length}
                     className="w-full py-3.5 sm:py-4 rounded-2xl btn-3d-yellow disabled:opacity-40 font-black text-base sm:text-lg shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
                   >
-                    <span>{currentState.attempts === 1 ? '🔄 Kiểm Tra Lại Cặp Nối' : '✨ Kiểm Tra Kết Quả Nối Cột'}</span>
+                    <span>{currentState.attempts === 1 ? '🔄 Check Pairs Again' : '✨ Check Matching Pairs'}</span>
                   </button>
                 )}
               </div>
@@ -514,14 +514,14 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
             {currentQ.type === 'sentence-order' && (
               <div className="space-y-4">
                 <p className="text-xs sm:text-sm font-bold text-slate-700 flex items-center gap-1.5">
-                  <span>🧩</span> Nhấn vào các khối từ bên dưới để ghép thành câu đúng thứ tự nhé:
+                  <span>🧩</span> Click the word blocks below in the correct order to build the sentence:
                 </p>
 
                 {/* Sentence Drop Zone */}
                 <div className="min-h-24 p-4 rounded-3xl border-3 border-dashed border-amber-400 bg-amber-50/70 flex flex-wrap gap-2.5 items-center shadow-inner">
                   {orderedWords.length === 0 ? (
                     <span className="text-sm font-bold text-amber-800/60 italic flex items-center gap-2 mx-auto">
-                      <span>👇</span> Bấm chọn các từ bên dưới để xếp vào đây...
+                      <span>👇</span> Click the words below to arrange them here...
                     </span>
                   ) : (
                     orderedWords.map((word, idx) => (
@@ -557,7 +557,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                     disabled={remainingWords.length > 0}
                     className="w-full py-3.5 sm:py-4 rounded-2xl btn-3d-yellow disabled:opacity-40 font-black text-base sm:text-lg shadow-lg transition cursor-pointer flex items-center justify-center gap-2"
                   >
-                    <span>{currentState.attempts === 1 ? '🔄 Kiểm Tra Lại Câu' : '🚀 Kiểm Tra Câu Đã Ghép'}</span>
+                    <span>{currentState.attempts === 1 ? '🔄 Check Sentence Again' : '🚀 Check Ordered Sentence'}</span>
                   </button>
                 )}
               </div>
@@ -593,7 +593,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                     <div className="text-sm sm:text-base text-slate-800 mt-2 p-3.5 bg-white/90 rounded-2xl border-2 border-amber-200 shadow-xs">
                       <div className="font-black text-amber-900 flex items-center gap-1.5 mb-1">
                         <Sparkles className="w-4 h-4 text-amber-600" />
-                        <span>Giải Thích Chi Tiết & Đáp Án Chuẩn:</span>
+                        <span>Explanation & Correct Answer:</span>
                       </div>
                       <div className="leading-relaxed font-semibold">{currentQ.explanation}</div>
                     </div>
@@ -601,7 +601,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
 
                   {!currentState.isCompleted && currentState.attempts === 1 && (
                     <div className="text-xs sm:text-sm text-rose-800 font-black mt-1">
-                      ⚠️ Bé còn 1 lần thử lại câu hỏi này. Đọc kỹ lại rồi chọn đáp án đúng nhé!
+                      ⚠️ You have 1 more chance to answer this question. Read carefully and try again!
                     </div>
                   )}
                 </div>
@@ -620,7 +620,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
               className="flex items-center gap-2 px-4 py-2.5 rounded-2xl border-2 border-slate-300 disabled:opacity-30 text-slate-700 bg-white hover:bg-slate-100 text-xs sm:text-sm font-black transition cursor-pointer shadow-xs"
             >
               <ArrowLeft className="w-4 h-4" />
-              <span>Câu Trước</span>
+              <span>Previous</span>
             </button>
 
             {currentIndex < totalQuestions - 1 ? (
@@ -632,7 +632,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                 disabled={!currentState.isCompleted}
                 className="flex items-center gap-2 px-6 py-3 rounded-2xl btn-3d-green disabled:opacity-35 font-black text-xs sm:text-base transition shadow-md cursor-pointer"
               >
-                <span>Câu Tiếp Theo 🚀</span>
+                <span>Next Question 🚀</span>
                 <ArrowRight className="w-4 h-4" />
               </button>
             ) : (
@@ -644,7 +644,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                 disabled={!currentState.isCompleted}
                 className="flex items-center gap-2 px-6 py-3.5 rounded-2xl btn-3d-yellow disabled:opacity-35 font-black text-xs sm:text-base shadow-lg transition cursor-pointer"
               >
-                <span>Hoàn Thành Đố Vui 🎉</span>
+                <span>Finish Quiz 🎉</span>
                 <Award className="w-5 h-5 text-amber-950" />
               </button>
             )}
@@ -659,13 +659,13 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
 
           <div>
             <span className="text-xs sm:text-sm font-black uppercase tracking-wider text-rose-800 bg-rose-100 border-2 border-rose-300 px-4 py-1.5 rounded-full shadow-xs inline-flex items-center gap-1.5">
-              <span>🎉 HOÀN THÀNH XUẤT SẮC! 🎉</span>
+              <span>🎉 GREAT JOB! 🎉</span>
             </span>
             <h3 className="text-2xl sm:text-4xl font-black text-rose-950 mt-3">
-              Bé đã làm rất tuyệt vời! 🌟
+              You Did Wonderful! 🌟
             </h3>
             <p className="text-sm sm:text-base text-amber-900 font-bold mt-1">
-              Bé đã vượt qua bài Đố Vui Tìm Hiểu Di Tích Đền Hai Bà Trưng!
+              You have completed the Hai Ba Trung Shrine Heritage Quiz!
             </p>
           </div>
 
@@ -676,7 +676,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                 {correctCount}/{totalQuestions}
               </div>
               <div className="text-xs text-sky-700 font-extrabold mt-1">
-                Số Câu Đúng
+                Correct Answers
               </div>
             </div>
 
@@ -685,7 +685,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                 {accuracyPercentage}%
               </div>
               <div className="text-xs text-amber-700 font-extrabold mt-1">
-                Độ Chính Xác
+                Accuracy
               </div>
             </div>
 
@@ -694,7 +694,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
                 +{correctCount * 10}
               </div>
               <div className="text-xs text-rose-700 font-extrabold mt-1">
-                Điểm Thưởng ⭐
+                Bonus Points ⭐
               </div>
             </div>
           </div>
@@ -703,14 +703,14 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
           <div className="text-left bg-gradient-to-r from-amber-500/10 via-rose-500/10 to-amber-500/10 rounded-3xl p-5 sm:p-6 border-3 border-amber-300 space-y-3">
             <div className="flex items-center gap-2 text-rose-950 font-black text-base sm:text-lg">
               <Sparkles className="w-5 h-5 text-amber-600" />
-              <span>Gợi ý chặng tiếp theo cho bé:</span>
+              <span>Recommended Next Steps:</span>
             </div>
             <ul className="text-xs sm:text-sm text-slate-800 font-bold space-y-2 list-disc list-inside">
               <li>
-                Khám phá <strong className="text-rose-900">Tour 360° Đền Hai Bà Trưng</strong> để dạo bước trong không gian di tích thực tế ảo 3D.
+                Explore the <strong className="text-rose-900">360° Virtual Shrine Tour</strong> to step inside ancient architecture and courtyards.
               </li>
               <li>
-                Tham gia <strong className="text-rose-900">15 Câu Hỏi Brain Arena</strong> thử thách tranh tài đỉnh cao để nhận cúp vàng toàn quốc!
+                Enter the <strong className="text-rose-900">Brain Arena (15 Questions)</strong> to climb up the nationwide student leaderboard!
               </li>
             </ul>
           </div>
@@ -722,7 +722,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
               className="flex items-center gap-2 px-5 py-3 rounded-2xl border-2 border-slate-300 bg-white hover:bg-slate-100 text-slate-700 font-black text-xs sm:text-sm transition cursor-pointer shadow-xs"
             >
               <RotateCcw className="w-4 h-4" />
-              <span>Làm Lại Bài Đố 🔄</span>
+              <span>Restart Quiz 🔄</span>
             </button>
 
             <button
@@ -733,7 +733,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
               className="flex items-center gap-2 px-5 py-3 rounded-2xl border-2 border-slate-300 bg-white hover:bg-slate-100 text-slate-700 font-black text-xs sm:text-sm transition cursor-pointer shadow-xs"
             >
               <BookOpen className="w-4 h-4" />
-              <span>Đọc Lại Bài Học 📖</span>
+              <span>Review Article 📖</span>
             </button>
 
             <button
@@ -743,7 +743,7 @@ export const InteractiveQuiz: React.FC<InteractiveQuizProps> = ({
               }}
               className="flex items-center gap-2 px-6 py-3.5 rounded-2xl btn-3d-yellow font-black text-xs sm:text-base shadow-lg transition cursor-pointer"
             >
-              <span>Vào Đấu Trường Brain Arena (15 Câu) ⚔️</span>
+              <span>Go to Brain Arena (15 Qs) ⚔️</span>
               <ArrowRight className="w-5 h-5 text-amber-950" />
             </button>
           </div>

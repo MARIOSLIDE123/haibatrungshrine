@@ -173,7 +173,7 @@ export const StudentProfileModal: React.FC<StudentProfileModalProps> = ({
                   <div className="text-3xl sm:text-4xl font-extrabold text-amber-300">
                     {student?.score || 0}
                   </div>
-                  <div className="text-[11px] text-amber-200/70 mt-1">Points Earned (Điểm số)</div>
+                  <div className="text-[11px] text-amber-200/70 mt-1">Points Earned</div>
                 </div>
 
                 {/* Rank */}
@@ -186,7 +186,7 @@ export const StudentProfileModal: React.FC<StudentProfileModalProps> = ({
                     #{studentRank}
                   </div>
                   <div className="text-[11px] text-red-200/70 mt-1">
-                    out of {totalStudents} students toàn quốc
+                    out of {totalStudents} students nationwide
                   </div>
                 </div>
 
@@ -199,7 +199,7 @@ export const StudentProfileModal: React.FC<StudentProfileModalProps> = ({
                   <div className="text-2xl sm:text-3xl font-extrabold text-blue-300 pt-1">
                     {formatDuration(student?.learningTimeSeconds || 0)}
                   </div>
-                  <div className="text-[11px] text-blue-200/70 mt-1">Thời gian học tập</div>
+                  <div className="text-[11px] text-blue-200/70 mt-1">Total Time Studied</div>
                 </div>
               </div>
 
@@ -214,25 +214,25 @@ export const StudentProfileModal: React.FC<StudentProfileModalProps> = ({
                     className="flex items-center gap-1.5 px-3 py-1 rounded-lg bg-amber-500/20 border border-amber-500/40 text-amber-300 hover:bg-amber-500/30 text-xs font-semibold transition"
                   >
                     <Edit3 className="w-3.5 h-3.5" />
-                    <span>Edit Profile (Sửa)</span>
+                    <span>Edit Profile</span>
                   </button>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs sm:text-sm">
                   <div>
-                    <span className="text-slate-400">Full Name (Họ và tên):</span>
+                    <span className="text-slate-400">Full Name:</span>
                     <div className="font-semibold text-white mt-0.5">{student?.fullName}</div>
                   </div>
                   <div>
-                    <span className="text-slate-400">Student ID (Mã định danh):</span>
+                    <span className="text-slate-400">Student ID:</span>
                     <div className="font-mono font-semibold text-amber-300 mt-0.5">{student?.id}</div>
                   </div>
                   <div>
-                    <span className="text-slate-400">School (Trường):</span>
+                    <span className="text-slate-400">School:</span>
                     <div className="font-semibold text-white mt-0.5">{student?.school}</div>
                   </div>
                   <div>
-                    <span className="text-slate-400">Class (Lớp):</span>
+                    <span className="text-slate-400">Class:</span>
                     <div className="font-semibold text-white mt-0.5">{student?.className}</div>
                   </div>
                 </div>
@@ -243,7 +243,7 @@ export const StudentProfileModal: React.FC<StudentProfileModalProps> = ({
                 <div className="flex items-center gap-2 font-bold">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
                   <span className="text-slate-300">
-                    {isFromSheet ? 'Đã kết nối trực tiếp với Google Sheet' : 'Đã kết nối máy chủ dữ liệu toàn quốc'}
+                    {isFromSheet ? 'Synced directly with Google Sheet' : 'Connected to National Cloud Database'}
                   </span>
                 </div>
                 <button
@@ -251,7 +251,7 @@ export const StudentProfileModal: React.FC<StudentProfileModalProps> = ({
                   className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl btn-3d-yellow font-black text-xs text-amber-950 shadow transition cursor-pointer"
                 >
                   <RefreshCw className="w-3.5 h-3.5" />
-                  <span>Đồng Bộ Ngay 🚀</span>
+                  <span>Sync Now 🚀</span>
                 </button>
               </div>
             </div>
@@ -261,7 +261,7 @@ export const StudentProfileModal: React.FC<StudentProfileModalProps> = ({
           {activeTab === 'leaderboard' && (
             <div className="space-y-3 animate-in fade-in duration-200">
               <div className="flex items-center justify-between text-xs text-slate-400 pb-1">
-                <span>Realtime Nationwide Rankings (Xếp hạng toàn quốc theo thời gian thực)</span>
+                <span>Realtime Nationwide Rankings</span>
                 <button
                   onClick={loadData}
                   disabled={isLoadingLeaderboard}
@@ -311,12 +311,12 @@ export const StudentProfileModal: React.FC<StudentProfileModalProps> = ({
                             </span>
                             {isUser && (
                               <span className="text-[10px] bg-red-600 text-white px-1.5 py-0.2 rounded font-bold uppercase">
-                                You (Bạn)
+                                You
                               </span>
                             )}
                           </div>
                           <div className="text-xs text-slate-400">
-                            {item.school} • Lớp {item.className}
+                            {item.school} • Class {item.className}
                           </div>
                         </div>
                       </div>
@@ -341,7 +341,7 @@ export const StudentProfileModal: React.FC<StudentProfileModalProps> = ({
           {activeTab === 'history' && (
             <div className="space-y-3 animate-in fade-in duration-200">
               <div className="text-xs text-slate-400">
-                Your learning and quiz completion logs (Lịch sử làm bài và hoạt động)
+                Your learning and quiz completion logs
               </div>
 
               {history.length === 0 ? (
@@ -364,7 +364,7 @@ export const StudentProfileModal: React.FC<StudentProfileModalProps> = ({
                         </div>
                         <div className="text-slate-400">{log.details}</div>
                         <div className="text-[11px] text-slate-500">
-                          {new Date(log.timestamp).toLocaleString('vi-VN')}
+                          {new Date(log.timestamp).toLocaleDateString('en-US', { month: 'short', day: 'numeric', hour: '2-digit', minute: '2-digit' })}
                         </div>
                       </div>
 
@@ -388,7 +388,7 @@ export const StudentProfileModal: React.FC<StudentProfileModalProps> = ({
             onClick={onClose}
             className="px-4 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold transition"
           >
-            Đóng
+            Close
           </button>
         </div>
       </div>

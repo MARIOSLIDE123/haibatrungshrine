@@ -29,6 +29,9 @@ interface HeaderProps {
   onFontScaleChange: (scale: number) => void;
 }
 
+const TOUR_360_URL =
+  'https://haibatrung.hanoi.vietnaminfo.net/vi/vtour/details/di-tich-kien-truc-nghe-thuat-den-chua-dinh-hai-ba-trung-2';
+
 export const Header: React.FC<HeaderProps> = ({
   activeTab,
   setActiveTab,
@@ -50,7 +53,7 @@ export const Header: React.FC<HeaderProps> = ({
       label: 'Reading & Audio',
       icon: BookOpen,
       emoji: '📖',
-      badge: 'Bài Đọc',
+      badge: 'Reading',
       colorActive: 'btn-3d-blue',
       colorInactive: 'hover:bg-sky-50 text-sky-900 border-sky-300',
     },
@@ -59,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({
       label: 'INTERACTIVE QUIZ',
       icon: HelpCircle,
       emoji: '🎯',
-      badge: '5 Câu Hỏi',
+      badge: '5 Qs',
       colorActive: 'btn-3d-yellow',
       colorInactive: 'hover:bg-amber-50 text-amber-900 border-amber-300',
     },
@@ -68,7 +71,7 @@ export const Header: React.FC<HeaderProps> = ({
       label: 'BRAIN ARENA',
       icon: Trophy,
       emoji: '🔥',
-      badge: '15 Thử Thách',
+      badge: '15 Qs',
       colorActive: 'btn-3d-red',
       colorInactive: 'hover:bg-rose-50 text-rose-900 border-rose-300',
     },
@@ -77,7 +80,7 @@ export const Header: React.FC<HeaderProps> = ({
       label: '360° SHRINE TOUR',
       icon: Compass,
       emoji: '🏰',
-      badge: 'Thực Tế Ảo',
+      badge: 'External Tour ↗',
       colorActive: 'btn-3d-green',
       colorInactive: 'hover:bg-emerald-50 text-emerald-900 border-emerald-300',
     },
@@ -86,7 +89,7 @@ export const Header: React.FC<HeaderProps> = ({
       label: 'NATIONAL RANKING',
       icon: Trophy,
       emoji: '🏆',
-      badge: 'Top Toàn Quốc',
+      badge: 'Leaderboard',
       colorActive: 'btn-3d-purple',
       colorInactive: 'hover:bg-purple-50 text-purple-900 border-purple-300',
     },
@@ -115,16 +118,16 @@ export const Header: React.FC<HeaderProps> = ({
       <div className="bg-amber-300 text-amber-950 text-xs px-4 lg:px-8 py-1.5 flex justify-between items-center tracking-wide font-extrabold shadow-inner">
         <div className="flex items-center gap-2">
           <span className="text-sm">🐘</span>
-          <span>ĐỀN HAI BÀ TRƯNG • ĐỒNG NHÂN, HÀ NỘI</span>
+          <span>HAI BA TRUNG SHRINE • DONG NHAN, HANOI</span>
           <span className="hidden sm:inline bg-rose-600 text-white text-[10px] px-2 py-0.5 rounded-full font-black">
-            DI TÍCH QUỐC GIA ĐẶC BIỆT
+            SPECIAL NATIONAL MONUMENT
           </span>
         </div>
         <div className="flex items-center gap-2 text-amber-950 text-xs font-bold">
-          <span className="hidden md:inline">🌟 English Fun Learning Journey</span>
+          <span className="hidden md:inline">🌟 English Historical Learning Portal</span>
           <span>•</span>
-          <span className="bg-amber-100 text-amber-900 px-2 py-0.5 rounded-full font-black text-[11px]">
-            Lớp 6 / Tiểu Học & Mầm Non
+          <span className="bg-amber-100 text-amber-900 px-2.5 py-0.5 rounded-full font-black text-[11px]">
+            Grade 6 English
           </span>
         </div>
       </div>
@@ -147,7 +150,7 @@ export const Header: React.FC<HeaderProps> = ({
                 HAI BA TRUNG SHRINE
               </h1>
               <p className="text-xs sm:text-sm text-amber-100 font-semibold drop-shadow-xs">
-                Khám phá Lịch sử • Bài đọc Tiếng Anh • Đố vui Brain Arena • Xếp hạng Toàn quốc
+                History Exploration • English Reading • Brain Arena Quiz • Nationwide Leaderboard
               </p>
             </div>
           </div>
@@ -161,7 +164,7 @@ export const Header: React.FC<HeaderProps> = ({
                 onOpenProfile();
               }}
               className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-white hover:bg-amber-50 text-slate-800 border-2 border-amber-300 shadow-md transition transform hover:-translate-y-0.5 active:translate-y-0.5 cursor-pointer"
-              title="Nhấn để xem thông tin học sinh và bảng xếp hạng"
+              title="Click to view student profile and ranking"
             >
               <div className="w-8 h-8 rounded-xl bg-gradient-to-br from-amber-400 to-rose-500 flex items-center justify-center text-white font-bold text-sm shadow">
                 🎓
@@ -169,7 +172,7 @@ export const Header: React.FC<HeaderProps> = ({
               <div className="text-left">
                 <div className="flex items-center gap-1.5 leading-tight">
                   <span className="text-xs sm:text-sm font-black text-slate-900 max-w-[130px] truncate">
-                    {student ? student.fullName : 'Học sinh'}
+                    {student ? student.fullName : 'Student'}
                   </span>
                   {student && (
                     <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-rose-100 text-rose-700 font-black border border-rose-200">
@@ -179,9 +182,9 @@ export const Header: React.FC<HeaderProps> = ({
                 </div>
                 <div className="flex items-center gap-1 text-xs text-amber-600 font-black">
                   <Star className="w-3.5 h-3.5 fill-amber-400 text-amber-500" />
-                  <span>{student ? student.score : 0} điểm</span>
+                  <span>{student ? student.score : 0} pts</span>
                   <span className="text-slate-400">•</span>
-                  <span className="text-slate-600 font-semibold text-[11px]">Hồ sơ & BXH</span>
+                  <span className="text-slate-600 font-semibold text-[11px]">Profile</span>
                 </div>
               </div>
             </button>
@@ -192,14 +195,14 @@ export const Header: React.FC<HeaderProps> = ({
                 onClick={handleDecreaseFont}
                 disabled={fontScale <= 0.9}
                 className="w-7 h-7 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center font-bold disabled:opacity-40"
-                title="Giảm cỡ chữ (A-)"
+                title="Decrease font size"
               >
                 <ZoomOut className="w-4 h-4 text-slate-700" />
               </button>
               <button
                 onClick={handleResetFont}
                 className="px-2 py-1 font-black text-xs hover:text-rose-600 rounded-lg"
-                title="Cỡ chữ mặc định"
+                title="Default font size"
               >
                 <span>{Math.round(fontScale * 100)}%</span>
               </button>
@@ -207,7 +210,7 @@ export const Header: React.FC<HeaderProps> = ({
                 onClick={handleIncreaseFont}
                 disabled={fontScale >= 1.35}
                 className="w-7 h-7 rounded-xl bg-slate-100 hover:bg-slate-200 flex items-center justify-center font-bold disabled:opacity-40"
-                title="Tăng cỡ chữ (A+)"
+                title="Increase font size"
               >
                 <ZoomIn className="w-4 h-4 text-slate-700" />
               </button>
@@ -221,17 +224,17 @@ export const Header: React.FC<HeaderProps> = ({
                   ? 'bg-amber-300 text-amber-950 border-amber-400 hover:bg-amber-200'
                   : 'bg-white/80 text-slate-600 border-white hover:bg-white'
               }`}
-              title={soundEnabled ? 'Tắt âm thanh' : 'Bật âm thanh'}
+              title={soundEnabled ? 'Mute sound' : 'Unmute sound'}
             >
               {soundEnabled ? (
                 <>
                   <Volume2 className="w-4 h-4 text-amber-900" />
-                  <span className="hidden sm:inline">Loa: BẬT 🎵</span>
+                  <span className="hidden sm:inline">Audio: ON 🎵</span>
                 </>
               ) : (
                 <>
                   <VolumeX className="w-4 h-4 text-slate-500" />
-                  <span className="hidden sm:inline">Loa: TẮT 🔇</span>
+                  <span className="hidden sm:inline">Audio: OFF 🔇</span>
                 </>
               )}
             </button>
@@ -247,6 +250,10 @@ export const Header: React.FC<HeaderProps> = ({
                 key={item.id}
                 onClick={() => {
                   soundEffects.playClick();
+                  if (item.id === 'tour360') {
+                    window.open(TOUR_360_URL, '_blank', 'noopener,noreferrer');
+                    return;
+                  }
                   setActiveTab(item.id);
                 }}
                 className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 rounded-2xl text-xs sm:text-sm font-black whitespace-nowrap transition-all cursor-pointer ${

@@ -151,10 +151,10 @@ export default function App() {
       <footer className="bg-slate-900 border-t-2 border-amber-500 text-slate-400 py-6 text-xs text-center px-4 w-full">
         <div className="w-full max-w-5xl mx-auto space-y-2">
           <div className="font-bold text-amber-300 text-sm">
-            Hai Ba Trung Shrine – Dong Nhan Shrine, Hanoi (Di tích Quốc gia Đặc biệt)
+            Hai Ba Trung Shrine – Dong Nhan Shrine, Hanoi (Special National Relic Site)
           </div>
           <p className="text-slate-400 max-w-2xl mx-auto text-xs sm:text-sm">
-            Preserving Vietnamese national cultural heritage and empowering Grade 6 English learners through interactive quizzes, the Brain Arena challenge, 360° virtual shrine exploration, and an AI voice tutor.
+            Preserving Vietnamese national cultural heritage and empowering Grade 6 English learners through interactive quizzes, the Brain Arena challenge, 360° virtual shrine exploration, and the nationwide student leaderboard.
           </p>
           <div className="text-[11px] text-slate-500 pt-2 border-t border-slate-800 flex flex-wrap items-center justify-center gap-2">
             <span>16:9 Adaptive Display</span>

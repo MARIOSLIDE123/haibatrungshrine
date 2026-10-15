@@ -27,17 +27,17 @@ export const StudentRegisterModal: React.FC<StudentRegisterModalProps> = ({
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!fullName.trim()) {
-      setError('Please enter your full name (Vui lòng nhập Họ và tên)');
+      setError('Please enter your full name');
       soundEffects.playIncorrect();
       return;
     }
     if (!school.trim()) {
-      setError('Please enter your school (Vui lòng nhập Trường học)');
+      setError('Please enter your school');
       soundEffects.playIncorrect();
       return;
     }
     if (!className.trim()) {
-      setError('Please enter your class (Vui lòng nhập Lớp học)');
+      setError('Please enter your class');
       soundEffects.playIncorrect();
       return;
     }
@@ -65,10 +65,10 @@ export const StudentRegisterModal: React.FC<StudentRegisterModalProps> = ({
             <span>🌟 Hai Ba Trung Shrine Adventure 🐘</span>
           </div>
           <h2 className="text-2xl sm:text-3xl font-black text-rose-950 tracking-tight flex items-center justify-center gap-2">
-            <span>{isEditing ? '✏️ Update Profile' : '🎒 Chào Mừng Bạn Nhỏ!'}</span>
+            <span>{isEditing ? '✏️ Update Profile' : '🎒 Welcome Student!'}</span>
           </h2>
           <p className="text-amber-800 font-bold text-xs sm:text-sm mt-1">
-            {isEditing ? 'Cập nhật thông tin học sinh' : 'Bé hãy điền thông tin để cùng khám phá & thi đấu nhé! 🎉'}
+            {isEditing ? 'Update your student details' : 'Please enter your information to start learning and playing! 🎉'}
           </p>
           <div className="w-20 h-1.5 bg-gradient-to-r from-amber-400 via-rose-500 to-amber-400 mx-auto mt-3 rounded-full"></div>
         </div>
@@ -86,15 +86,14 @@ export const StudentRegisterModal: React.FC<StudentRegisterModalProps> = ({
             <label className="block text-xs sm:text-sm font-black text-slate-800 mb-1 flex items-center gap-2">
               <span className="text-lg">👤</span>
               <span className="text-rose-900 font-extrabold">Full Name</span>
-              <span className="text-amber-800 font-bold">(Họ và tên)</span>
               <span className="text-rose-600">*</span>
             </label>
             <input
               type="text"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              placeholder="e.g. Trần Hồng Ngọc"
-              className="w-full px-4 py-2.5 sm:py-3 rounded-xl bg-amber-50/50 border-2 border-amber-300 focus:border-rose-500 focus:bg-white text-slate-900 font-bold placeholder-slate-400 text-sm sm:text-base outline-none transition shadow-inner"
+              placeholder=""
+              className="w-full px-4 py-2.5 sm:py-3 rounded-xl bg-amber-50/50 border-2 border-amber-300 focus:border-rose-500 focus:bg-white text-slate-900 font-bold text-sm sm:text-base outline-none transition shadow-inner"
               autoFocus
             />
           </div>
@@ -104,15 +103,14 @@ export const StudentRegisterModal: React.FC<StudentRegisterModalProps> = ({
             <label className="block text-xs sm:text-sm font-black text-slate-800 mb-1 flex items-center gap-2">
               <span className="text-lg">🏫</span>
               <span className="text-sky-900 font-extrabold">School</span>
-              <span className="text-amber-800 font-bold">(Trường học)</span>
               <span className="text-rose-600">*</span>
             </label>
             <input
               type="text"
               value={school}
               onChange={(e) => setSchool(e.target.value)}
-              placeholder="e.g. Tiểu học Hai Bà Trưng"
-              className="w-full px-4 py-2.5 sm:py-3 rounded-xl bg-sky-50/50 border-2 border-sky-300 focus:border-sky-500 focus:bg-white text-slate-900 font-bold placeholder-slate-400 text-sm sm:text-base outline-none transition shadow-inner"
+              placeholder=""
+              className="w-full px-4 py-2.5 sm:py-3 rounded-xl bg-sky-50/50 border-2 border-sky-300 focus:border-sky-500 focus:bg-white text-slate-900 font-bold text-sm sm:text-base outline-none transition shadow-inner"
             />
           </div>
 
@@ -121,15 +119,14 @@ export const StudentRegisterModal: React.FC<StudentRegisterModalProps> = ({
             <label className="block text-xs sm:text-sm font-black text-slate-800 mb-1 flex items-center gap-2">
               <span className="text-lg">🎒</span>
               <span className="text-emerald-900 font-extrabold">Class</span>
-              <span className="text-amber-800 font-bold">(Lớp học)</span>
               <span className="text-rose-600">*</span>
             </label>
             <input
               type="text"
               value={className}
               onChange={(e) => setClassName(e.target.value)}
-              placeholder="e.g. 5A1, 4B, Lá 2..."
-              className="w-full px-4 py-2.5 sm:py-3 rounded-xl bg-emerald-50/50 border-2 border-emerald-300 focus:border-emerald-500 focus:bg-white text-slate-900 font-bold placeholder-slate-400 text-sm sm:text-base outline-none transition shadow-inner"
+              placeholder=""
+              className="w-full px-4 py-2.5 sm:py-3 rounded-xl bg-emerald-50/50 border-2 border-emerald-300 focus:border-emerald-500 focus:bg-white text-slate-900 font-bold text-sm sm:text-base outline-none transition shadow-inner"
             />
           </div>
 
@@ -137,7 +134,7 @@ export const StudentRegisterModal: React.FC<StudentRegisterModalProps> = ({
           <div className="p-3 bg-gradient-to-r from-amber-100 to-orange-100 rounded-2xl border-2 border-amber-300 text-xs font-bold text-amber-950 flex items-start gap-2 shadow-xs">
             <Award className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
             <span>
-              ⭐ Điểm thi đua và cúp thành tích sẽ được lưu trực tiếp lên <strong>Bảng Xếp Hạng Toàn Quốc</strong>!
+              ⭐ Your score and achievements will be saved directly to the <strong>National Leaderboard</strong>!
             </span>
           </div>
 
@@ -149,7 +146,7 @@ export const StudentRegisterModal: React.FC<StudentRegisterModalProps> = ({
                 onClick={onClose}
                 className="flex-1 py-3 px-4 rounded-2xl border-2 border-slate-300 bg-white hover:bg-slate-100 text-slate-700 font-black text-sm transition cursor-pointer"
               >
-                Hủy bỏ
+                Cancel
               </button>
             )}
             <button
@@ -157,7 +154,7 @@ export const StudentRegisterModal: React.FC<StudentRegisterModalProps> = ({
               className="flex-1 py-3.5 px-6 rounded-2xl btn-3d-yellow font-black text-base sm:text-lg shadow-lg flex items-center justify-center gap-2 cursor-pointer"
             >
               <CheckCircle2 className="w-6 h-6 text-amber-950" />
-              <span>{isEditing ? 'Lưu Thay Đổi' : 'Bắt Đầu Vào Học 🚀'}</span>
+              <span>{isEditing ? 'Save Changes' : 'Start Learning Adventure 🚀'}</span>
             </button>
           </div>
         </form>
