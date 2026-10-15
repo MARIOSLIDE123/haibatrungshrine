@@ -1,0 +1,10 @@
+{
+  "name": "Hai Ba Trung Shrine - English Learning & Quiz Arena",
+  "description": "Educational platform for Grade 6 students exploring Hai Ba Trung Shrine (Dong Nhan Shrine, Hanoi) with an interactive reading article, 5-question comprehension quiz, 15-question Brain Arena, and an AI Voice Tutor powered by Gemini.",
+  "requestFramePermissions": [
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
